@@ -10,17 +10,43 @@
 <body>
     <div>
         <nav>
-
+            <div>
+                <ul>
+                </ul>
+            </div>
         </nav>
     </div>
     <div>
         <section>
 
+            <div id="to-do-container">
+                <h2>To-do Tasks</h2>
+                <input id="input-box" type="text">
+                <button id="input-button" onclick="addTask()">Add Task</button>
+            </div>
+
         </section>
     </div>
     <div>
         <main>
-            
+            <div class="task-container" id="inprogress-container">
+                <h3>In Progress</h3>
+                <div id="contain-inprogress">
+                    <ul id="inprogress-tasks">
+                        
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-container" id="completed-container">
+                <h3>Completed</h3>
+                <div id="contain-completed">
+                    <ul id="completed-tasks">
+
+                    </ul>
+                </div>
+            </div>
+
         </main>
     </div>
     <div>
@@ -28,6 +54,6 @@
 
         </footer>
     </div>
-    <script src="index.js"></script>
+    <script src="modified.js"></script>
 </body>
 </html>
