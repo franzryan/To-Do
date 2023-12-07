@@ -10,11 +10,12 @@ function saveToLocalStorage() {
 }
 
 window.addEventListener('load', function(){
-    creationOfLi(true, taskArr)
+    creationOfLi(taskArr)
 })
 
 function creationOfLi() {
     taskArr.forEach(function(value) {
+        console.log('creation ran')
                 //create li element
                 let createLi = document.createElement('li');
                 //create input element for checkbox
@@ -23,21 +24,40 @@ function creationOfLi() {
                 //create label for the li element (cannot display text if without label and assign input to label content)
                 let label = document.createElement('label')
                 label.textContent = value
+                let deleteBtn = document.createElement('button')
+                deleteBtn.textContent = "Delete"
                 createLi.appendChild(createInput)
                 //append label
                 createLi.appendChild(label)
                 //append li 
                 progressUl.appendChild(createLi)
+                createLi.appendChild(deleteBtn)
                 createInput.addEventListener('change', function() {
                     if (createInput.checked) {
                         // Move the li element to the completed tasks container
                         completedUl.appendChild(createLi);
+                        saveToLocalStorage()
                     } else {
                         // Move the li element back to the in-progress tasks container
                         progressUl.appendChild(createLi);
+                        saveToLocalStorage()
                     }
+                    saveToLocalStorage()
                 });
+                deleteBtn.addEventListener('click', () => {
+                    console.log(label.textContent)
+                    taskArr.forEach(function(item) {
+                        if (label.textContent == item) {
+                            let itemIndex = taskArr.indexOf(item)
+                            taskArr.splice(itemIndex, 1)
+                            console.log(taskArr)
+                            createLi.remove()
+                            saveToLocalStorage()
+                        }
+                    })
+                })
             })
+            saveToLocalStorage()
 }
 
 function addTask(fromPageLoad) {
@@ -53,35 +73,8 @@ function addTask(fromPageLoad) {
 }
 }
 
-// function addTask(fromPageLoad) {
-//     if (inputBox.value === '' && !fromPageLoad) {
-//         console.log("please enter a task")
-//         alert('please enter a task')
-//     } else {
-//     //add the input value to task array
-//     taskArr.push(inputBox.value)
-//     progressUl.innerHTML = '';
-//     //iterate the task array and set an li element per index
-//     taskArr.forEach(function(value) {
-//         let createLi = document.createElement('li');
-//         let createInput = document.createElement('input')
-//         createInput.type = 'checkbox'
-//         let label = document.createElement('label')
-//         label.textContent = value
-//         createLi.appendChild(createInput)
-//         createLi.appendChild(label)
-//         progressUl.appendChild(createLi)
-//         createInput.addEventListener('change', function() {
-//             if (createInput.checked) {
-//                 // Move the li element to the completed tasks container
-//                 completedUl.appendChild(createLi);
-//             } else {
-//                 // Move the li element back to the in-progress tasks container
-//                 progressUl.appendChild(createLi);
-//             }
-//         });
-//     })
-//     //empty the input box
-//     inputBox.value = ""
-//     saveToLocalStorage()
-// }}
+function deleteAllTask() {
+    taskArr = []
+    console.log('hello')
+    creationOfLi(taskArr)
+}
