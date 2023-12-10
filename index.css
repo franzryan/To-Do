@@ -2,16 +2,7 @@
    boxsizing: border-box;
 }
 
-/* #contain-inprogress {
-    background-color: red;
-} */
-
-#contain-completed {
-    background-color: blue;
-    
-}
 
 li {
-    background-color: pink;
     list-style: none;
 }
