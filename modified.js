@@ -20,10 +20,12 @@ function creationOfLi(tasksArray, destinationUl) {
     tasksArray.forEach(function(value) {
                 //create li element
                 let createLi = document.createElement('li');
+                createLi.className = "d-flex justify-content-evenly"
 
                 //create input element for checkbox
                 let createInput = document.createElement('input')
                 createInput.type = 'checkbox'
+                createInput.className = "form-check-input"
 
                 //create label for the li element (cannot display text if without label and assign input to label content)
                 let label = document.createElement('label')
@@ -31,6 +33,7 @@ function creationOfLi(tasksArray, destinationUl) {
 
                 let deleteBtn = document.createElement('button')
                 deleteBtn.textContent = "Delete"
+                deleteBtn.className = "btn btn-outline-danger"
 
                 createLi.appendChild(createInput)
                 //append label
