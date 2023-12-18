@@ -16,26 +16,42 @@ window.addEventListener('load', function(){
     runProgressAndCompleted()
 })
 
+inputBox.addEventListener('keyup', function(event) {
+    if (document.activeElement === inputBox) {
+        console.log('Input is focused');
+        // Check if the pressed key is Enter (key code 13)
+        if (event.key === 'Enter') {
+            // Trigger the desired action
+            addTask()
+        }
+    }
+});
+
+
 function creationOfLi(tasksArray, destinationUl) {
     tasksArray.forEach(function(value) {
                 //create li element
                 let createLi = document.createElement('li');
-                createLi.className = "d-flex justify-content-evenly"
+                createLi.className = "d-flex justify-content-between"
 
                 //create input element for checkbox
                 let createInput = document.createElement('input')
                 createInput.type = 'checkbox'
-                createInput.className = "form-check-input"
+                createInput.className = "form-check-input order-1"
+                
 
                 //create label for the li element (cannot display text if without label and assign input to label content)
                 let label = document.createElement('label')
                 label.textContent = value
+                label.className = "d-flex align-items-center justify-content-between w-100 me-2"
+                label.appendChild(createInput)
+
+
 
                 let deleteBtn = document.createElement('button')
                 deleteBtn.textContent = "Delete"
                 deleteBtn.className = "btn btn-outline-danger"
 
-                createLi.appendChild(createInput)
                 //append label
                 createLi.appendChild(label)
                 //append li to document
